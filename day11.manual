@@ -1,0 +1,112 @@
+The first floor contains a promethium generator and a promethium-compatible microchip.
+The second floor contains a cobalt generator, a curium generator, a ruthenium generator, and a plutonium generator.
+The third floor contains a cobalt-compatible microchip, a curium-compatible microchip, a ruthenium-compatible microchip, and a plutonium-compatible microchip.
+The fourth floor contains nothing relevant.
+
+F4
+F3 CoC CuC RuC PtC
+F2 CoG CuG RuG PtG
+F1 PrG PrC
+
+1 step: PrG+PrC F1->F2, total 1
+
+F4
+F3 CoC CuC RuC PtC
+F2 PrG PrC CoG CuG RuG PtG
+F1
+
+1 step: PrC F2->F3, total 2
+
+F4
+F3 PrC CoC CuC RuC PtC
+F2 PrG CoG CuG RuG PtG
+F1
+
+1 step: PrC+CoC F3->F2, total 3
+
+F4
+F3 CuC RuC PtC
+F2 PrC CoC PrG CoG CuG RuG PtG
+F1
+
+2 steps: PrC F2->F3, PrC+CuC F3->F2, total 5
+
+F4
+F3 RuC PtC
+F2 CuC PrC CoC PrG CoG CuG RuG PtG
+F1
+
+2 steps: PrC F2->F3, PrC+RuC F3->F2, total 7
+
+F4
+F3 PtC
+F2 RuC CuC PrC CoC PrG CoG CuG RuG PtG
+F1
+
+2 steps: PrC F2->F3, PrC+PtC F3->F2, total 9
+
+F4
+F3
+F2 PtC RuC CuC PrC CoC PrG CoG CuG RuG PtG
+F1
+
+8 steps: 4 * (CuC+SomeC F2->F1, CoC F1->F2)
+
+F4
+F3
+F2 CoC PrG CoG CuG RuG PtG *
+F1 PtC RuC CuC PrC
+
+2 steps: CoC+CoG F2->F3, CoG F3->F2
+
+F4
+F3 CoC
+F2 PrG CoG CuG RuG PtG *
+F1 PtC RuC CuC PrC
+
+9 steps: 5 * (Two gens up, one down. First one up is CoG.) - last gen doesn't go down
+
+F4
+F3 CoC CoG PrG CuG RuG PtG
+F2
+F1 PtC RuC CuC PrC
+
+2 CoC CoG
+
+F4 CoC
+F3 CoG PrG CuG RuG PtG
+F2
+F1 PtC RuC CuC PrC
+
+F4 CoC
+F3 CoG PrG CuG RuG PtG
+F2
+F1 PtC RuC CuC PrC
+
+9
+
+F4 CoC CoG PrG CuG RuG PtG
+F3
+F2
+F1 PtC RuC CuC PrC
+
+3
+
+F4 CoG PrG CuG RuG PtG
+F3
+F2
+F1 CoC PtC RuC CuC PrC
+
+14
+
+F4 CoG PrG CuG RuG PtG
+F3 CoC PtC RuC CuC PrC
+F2
+F1
+
+9
+
+F4 CoG PrG CuG RuG PtG CoC PtC RuC CuC PrC
+F3
+F2
+F1
