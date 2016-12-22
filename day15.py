@@ -57,8 +57,6 @@ for i in range(1, len(discs) + 1):
     print i, "delay", delay
     delays.append(delay)
 
-# print lcmm(delays)
-
 delay = 0
 while True:
     if all([delay % discs[i][0] == delays[i-1] for i in range(1, len(discs) + 1)]):
