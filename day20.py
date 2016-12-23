@@ -40,43 +40,47 @@ class IntervalNode(object):
     def search(self, value):
         if value > self.max:
             # print "value", value, "bigger than max", self.max
-            return False
+            return None
 
         if value >= self.ival.b and value <= self.ival.e:
             # print "in range", self.ival
-            return True
+            return self.ival.e
 
         if self.left is not None:
             # print "to left"
             in_left = self.left.search(value)
-            if in_left:
+            if in_left is not None:
                 # print "to left true"
-                return True
+                return in_left
 
         if value >= self.ival.b:
             if self.right is not None:
                 # print "to right"
                 in_right = self.right.search(value)
-                if in_right:
+                if in_right is not None:
                     # print "to right true"
-                    return True
+                    return in_right
 
         # print "nothing"
-        return False
+        return None
 
 
     def search_ival(self, interval):
         if contains(self.ival, interval):
-            return True
+            return self.ival.e
 
-        if self.left is not None and self.left.search_ival(interval):
-            return True
+        if self.left is not None:
+            left_ival = self.left.search_ival(interval)
+            if left_ival is not None:
+                return left_ival.e
 
         if interval.b >= self.ival.b:
-            if self.right is not None and self.right.search_ival(interval):
-                return True
+            if self.right is not None:
+                right_ival = self.right.search_ival(interval)
+                if right_ival is not None:
+                    return right_ival.e
 
-        return False
+        return None
 
 
 node = None
@@ -99,15 +103,13 @@ while addr < 2**32:
     # if addr % 1000000 == 0:
     #     print addr
 
-    if node.search(addr) is False:
+    e = node.search(addr)
+    if e is None:
         print addr
         addr += 1
         count += 1
         continue
-
-    if node.search_ival(Interval(addr, addr + 10000)):
-        addr += 10000
     else:
-        addr += 1
+        addr = e + 1
 
 print "count", count
