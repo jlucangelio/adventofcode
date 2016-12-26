@@ -11,8 +11,6 @@ regs = {
     "d": 0
 }
 
-regs["a"] = int(sys.argv[2])
-
 pc = 0
 instructions = []
 
